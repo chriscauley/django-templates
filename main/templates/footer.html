@@ -1,0 +1,37 @@
+<div class="wrap">
+  <div class="top">
+    <div class="clocked">
+      <div class="name">
+        Six<span class="blue">foot</span> Houston
+      </div>
+      <div>2415 W. Alabama, Suite 208</div>
+      <div>Houston, Texas 77098</div>
+      <div>Tel: <a href="tel:7135224638">713.522.4638</a></div>
+    </div>
+    <div class="clocked">
+      <div class="name">
+        Six<span class="blue">foot</span> Los Angeles
+      </div>
+      <div>4223 Glencoe Avenue, #125 Suit C</div>
+      <div>Marina Del Rey, California 90292</div>
+      <div>Tel: <a href="tel:3103069150">310.306.9150</a></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="third">
+      General Info: <a href="mailto:info@6ft.com">info@6ft.com</a><br/>
+      Resumes: <a href="mailto:careers@6ft.com">careers@6ft.com</a><br/>
+      Webmaster: <a href="mailto:web@6ft.com">web@6ft.com</a>
+    </div>
+    <div class="third">
+      Client Services: <a href="mailto:sales">sales@6ft.com</a><br/>
+      Invoicing: <a href="mailto:invoicing@6ft.com">invoicing@6ft.com</a>
+    </div>
+    <div class="third social">
+      {% for link in social %}
+      <a href="{{ link.url }}" style="background-image: url(/static/images/{{ link.name }}_blue.png);"></a>
+      {% endfor %}
+    </div>
+  </div>
+  <center>&copy;2009-{% now "Y" %} SixFoot LLC. All Rights Reserved.</center>
+</div>

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+GIT_WORK_TREE=../ git checkout -f
+export GIT_WORK_TREE=../
+cd $GIT_WORK_TREE
+
+echo -e "\n---Silently migrating, compressing, collecting static, and restarting---\n"
+
+source $GIT_WORK_TREE/site/env/bin/activate
+python $GIT_WORK_TREE/site/manage.py migrate>/dev/null
+python $GIT_WORK_TREE/site/manage.py collectstatic --noinput>/dev/null
+python $GIT_WORK_TREE/site/manage.py compress>/dev/null
+
+$GIT_WORK_TREE/site/server/gunicorn.sh stop>/dev/null
+sleep 1
+$GIT_WORK_TREE/site/server/gunicorn.sh start>/dev/null
