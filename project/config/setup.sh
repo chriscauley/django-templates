@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if [[ $1 -ne "dry" ]]; then
-    echo -n "Copying configuration files... "
+    echo "Copying configuration files... "
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     SITE=`readlink -f $DIR/../`
     SHARED=`readlink -f $DIR/../../shared`
@@ -17,10 +17,17 @@ if [[ $1 -ne "dry" ]]; then
     ln -s $DIR/gunicorn.sh /etc/init.d/gunicorn-{{ project_name }}.sh
     ln -s $DIR/post-receive $DIR/../.git/hooks/post-receive
 
-    echo -n "Creating shared folders... "
+    echo "Creating shared folders... "
     mkdir $SHARED
     mkdir $SHARED/log $SHARED/pid $SHARED/sockets
     chown -R deploy.deploy $SHARED
+
+    echo "Creating virtual environment..."
+    cd $SITE
+    virtualenv env>/dev/null
+    source env/bin/activate
+    pip install -r $DIR/requirements.txt>/dev/null
+    
     echo -e "Done! \n\n"
 fi
 

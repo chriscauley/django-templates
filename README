@@ -1,0 +1,10 @@
+SixFoot Django Templates
+========
+
+Creates a basic skeleton for a new Django site. Use the 'startproject.sh' script instead of 'django-admin.py startproject' for best results. Like so:
+
+```bash
+bash django-templates/startproject.sh <projectname> [destination]
+```
+
+This replaces the {{ project_name }} variable in some files that would otherwise be forgotten.
