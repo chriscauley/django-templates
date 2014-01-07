@@ -6,30 +6,31 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-if [[ $1 -ne "dry" ]]; then
-    echo "Copying configuration files... "
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    SITE=`readlink -f $DIR/../`
-    SHARED=`readlink -f $DIR/../../shared`
+echo "Copying configuration files... "
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SITE=`readlink -f $DIR/../`
+SHARED=`readlink -f $DIR/../../shared`
 
-    ln -s $DIR/nginx.conf /etc/nginx/sites-enabled/{{ project_name }}.conf
-    /etc/nginx/restart
-    ln -s $DIR/gunicorn.sh /etc/init.d/gunicorn-{{ project_name }}.sh
-    ln -s $DIR/post-receive $DIR/../.git/hooks/post-receive
+ln -s $DIR/nginx.conf /etc/nginx/sites-enabled/{{ project_name }}.conf
+/etc/init.d/nginx restart
+ln -s $DIR/gunicorn.sh /etc/init.d/gunicorn-{{ project_name }}.sh
+su deploy -c "ln -s $DIR/post-receive $DIR/../.git/hooks/post-receive"
+chown -R deploy.deploy $DIR/../.git/hooks/post-receive
+chmod +x $DIR/*.sh $DIR/post-receive
 
-    echo "Creating shared folders... "
-    mkdir $SHARED
-    mkdir $SHARED/log $SHARED/pid $SHARED/sockets
-    chown -R deploy.deploy $SHARED
+echo "Creating shared folders... "
+mkdir $SHARED
+mkdir $SHARED/log $SHARED/pid $SHARED/sockets
+chown -R deploy.deploy $SHARED
 
-    echo "Creating virtual environment..."
-    cd $SITE
-    virtualenv env>/dev/null
-    source env/bin/activate
-    pip install -r $DIR/requirements.txt>/dev/null
-    
-    echo -e "Done! \n\n"
-fi
+echo "Creating virtual environment... (this may take a minute or two)"
+cd $SITE
+virtualenv env>/dev/null
+source env/bin/activate
+pip install -r $DIR/requirements.txt>/dev/null
+chown -R deploy.deploy $SITE
+
+echo -e "Done! \n\n"
 
 echo "FINAL TODO:"
 echo "+ Create the appropriate database, most likely in:"
@@ -39,4 +40,3 @@ echo "+ Run ./manage.py syncdb and ./manage.py migrate or load a database file."
 echo "+ On your machine create a git remote:"
 echo "   git remote add [staging|live|temp] deploy@[hostname]:${SITE} "
 echo "+ Set bare=true in .git/config when you are ready to start pushing."
-echo -e "\n\nRun this script with dry as an argument to view this message again."
