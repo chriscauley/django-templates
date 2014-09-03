@@ -9,7 +9,6 @@ django-suit
 django_compressor
 django-devserver
 Django-Next-Please
-django-devserver
 
 # This can probably be soon changed to just sorl-thumbnail.
 # Stable sorl gives depracation warnings with django 1.6
