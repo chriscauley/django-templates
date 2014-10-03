@@ -1,4 +1,4 @@
-SixFoot Django Templates
+Django Templates
 ========
 
 Creates a basic skeleton for a new Django site. Use the 'startproject.sh' script instead of 'django-admin.py startproject' for best results. Like so:

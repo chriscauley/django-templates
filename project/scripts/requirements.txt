@@ -1,10 +1,9 @@
 pillow
 simplejson
 psycopg2
-gunicorn
+requests
 
 django
-south
 django-suit
 django_compressor
 django-devserver

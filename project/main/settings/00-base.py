@@ -16,9 +16,20 @@ MIDDLEWARE_CLASSES = (
   'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'modifi3d.urls'
+TEMPLATE_CONTEXT_PROCESSORS = (
+  'django.contrib.auth.context_processors.auth',
+  'django.core.context_processors.debug',
+  'django.core.context_processors.i18n',
+  'django.core.context_processors.media',
+  'django.core.context_processors.static',
+  'django.core.context_processors.tz',
+  'django.core.context_processors.request',
+  'django.contrib.messages.context_processors.messages'
+)
 
-WSGI_APPLICATION = 'modifi3d.wsgi.application'
+ROOT_URLCONF = '{{ project_name }}.main.urls'
+
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 DATABASES = {
   'default': {
@@ -33,9 +44,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True = True = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '.static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../.static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '.media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../.media')
+
+STATICFILES_FINDERS = (
+  'django.contrib.staticfiles.finders.FileSystemFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+  # other finders..
+  'compressor.finders.CompressorFinder',
+)
 
 FAVICON = '/static/favicon.ico'
