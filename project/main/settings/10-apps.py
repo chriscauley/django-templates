@@ -13,7 +13,6 @@ INSTALLED_APPS = (
   'crop_override',
   'sorl.thumbnail',
 
-  'jscad',
 )
 
 # Django Suit configuration example

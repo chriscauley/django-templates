@@ -10,6 +10,7 @@ urlpatterns = patterns(
   url(r'^$', 'main.views.home',name='home'),
   url(r'favicon.ico$', 'main.views.redirect',
       {'url': getattr(settings,'FAVICON','/static/favicon.png')}),
+  url(r'^auth/',include('django.contrib.auth.urls')),
 )
 
 if settings.DEBUG:
