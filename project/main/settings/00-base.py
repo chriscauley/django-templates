@@ -27,9 +27,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.messages.context_processors.messages'
 )
 
-ROOT_URLCONF = '{{ project_name }}.main.urls'
+ROOT_URLCONF = 'main.urls'
 
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
   'default': {

@@ -28,7 +28,7 @@
   <body>
     <div id="wrapper">
       <header>
-	{% block header %}{% include "header.html" %}{% endblock %}
+        {% block header %}{% include "_header.html" %}{% endblock %}
       </header>
       <div id="content">
 	{% block content %}
@@ -37,7 +37,7 @@
 	{% endblock %}
       </div>
       <footer id="footer">
-        {% block footer %}{% include "footer.html" %}{% endblock %}
+        {% block footer %}{% include "_footer.html" %}{% endblock %}
       </footer>
     </div>
   </body>
