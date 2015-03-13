@@ -29,12 +29,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   #'social.apps.django_app.context_processors.login_redirect',
 )
 
-"""
 AUTHENTICATION_BACKENDS = (
-  'social.backends.google.GoogleOAuth2',
-  'social.backends.twitter.TwitterOAuth',
+  #'social.backends.google.GoogleOAuth2',
+  #'social.backends.twitter.TwitterOAuth',
+  'main.backends.EmailOrUsernameModelBackend',
   'django.contrib.auth.backends.ModelBackend',
-)"""
+)
 
 # Above comments are useful for social auth. Requires these keys in a private file
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
