@@ -74,4 +74,7 @@ STATICFILES_FINDERS = (
   'compressor.finders.CompressorFinder',
 )
 
+LESS_EXECUTABLE = 'lessc'
+COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
+
 FAVICON = '/static/favicon.ico'

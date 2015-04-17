@@ -6,13 +6,12 @@
     <meta name="viewport" content="initial-scale=1">
     <meta name="keywords" content="{% block meta-keywords %}{% endblock %}">
     <meta name="description" content="{% block meta-description %}{% endblock %}">
-    <meta name="author" content="{% block meta-author %}{% endblock %}">
+    <meta name="author" content="{% block meta-author %}chriscauley{% endblock %}">
     <meta name="application-name" content="">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    {# stock bootstrap for now #}
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}less/bs.css" />
+
     {% compress css %}
     <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/base.less" />
     {% endcompress %}
@@ -37,14 +36,12 @@
         {% block header %}<h1>{% block header_content %}{% endblock %}</h1>{% endblock %}
       </header>
       <div id="content">
-	{% block content %}
-	<div id="main">{% block main %}{% endblock %}</div>
-	<div id="side">{% block side %}{% endblock %}</div>
-	{% endblock %}
+	      {% block content %}
+	      <div id="main">{% block main %}{% endblock %}</div>
+	      <div id="side">{% block side %}{% endblock %}</div>
+	      {% endblock %}
       </div>
-      <footer id="footer">
-        {% block footer %}{% include "_footer.html" %}{% endblock %}
-      </footer>
+      <footer id="footer">{% block footer %}{% include "_footer.html" %}{% endblock %}</footer>
     </div>
   </body>
 </html>
