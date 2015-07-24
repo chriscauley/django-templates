@@ -36,6 +36,7 @@
         {% block header %}<h1>{% block header_content %}{% endblock %}</h1>{% endblock %}
       </header>
       <div id="content">
+        {% block messages %}{% include "_messages.html" %}{% endblock %}
 	      {% block content %}
 	      <div id="main">{% block main %}{% endblock %}</div>
 	      <div id="side">{% block side %}{% endblock %}</div>
