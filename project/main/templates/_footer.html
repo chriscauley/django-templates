@@ -3,8 +3,7 @@
   </div>
   <div class="social">
     {% for link in social_links %}
-    <a href="{{ link.url }}">
-      <img src="{{ STATIC_URL }}img/{{ link.img }}"></a>
+    <a href="{{ link.url }}"><i class="fa fa-{{ link.icon }}"></i></a>
     {% endfor %}
   </div>
 </div>
