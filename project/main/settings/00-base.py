@@ -66,7 +66,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-USE_I18N = True = True = True
+USE_I18N = USE_L10N = USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../.static')
@@ -84,6 +84,8 @@ STATICFILES_FINDERS = (
 )
 
 LESS_EXECUTABLE = 'lessc'
-COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
+COMPRESS_PRECOMPILERS = [
+  ('text/less', "lessc {infile} {outfile} --line-numbers=comments;autoprefixer-cli {outfile} -o {outfile}"),
+]
 
 FAVICON = '/static/favicon.ico'

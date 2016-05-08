@@ -1,0 +1,3 @@
+django
+-e git+https://github.com/chriscauley/lablackey.git#egg=lablackey
+#python-social-auth
