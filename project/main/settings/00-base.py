@@ -3,7 +3,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = '8d&j_3zjc^4!)+3_s0!waya72jhx8j=3iryhexz=uq)9t)vbcs'
 
-DEBUG = TEMPLATE_DEBUG = False
+DEBUG = False
 
 ALLOWED_HOSTS = []
 

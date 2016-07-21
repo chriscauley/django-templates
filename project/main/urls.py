@@ -2,23 +2,23 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
+from django.contrib.auth import urls as auth_urls
+from django.views.static import serve
+from main import views as main_views
+
 admin.autodiscover()
 
-urlpatterns = patterns(
-  '',
+urlpatterns = [
   url(r'^admin/', include(admin.site.urls)),
-  url(r'^auth/',include('django.contrib.auth.urls')),
+  url(r'^auth/',include(auth_urls)),
 
-  url(r'^$', 'main.views.home',name='home'),
-  url(r'favicon.ico$', 'main.views.redirect',
+  url(r'^$', main_views.home,name='home'),
+  url(r'favicon.ico$', main_views.redirect,
       {'url': getattr(settings,'FAVICON','/static/favicon.png')}),
-  url(r'^app.appcache$','main.views.direct_to_template',{'template': 'app.appcache'}),
-)
+  url(r'^app.appcache$',main_views.direct_to_template,{'template': 'app.appcache'}),
+]
 
 if settings.DEBUG:
-  urlpatterns += patterns(
-    '',
-    url(r'^media/(?P<path>.*)$',
-        'django.views.static.serve',
-        {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-  )
+  urlpatterns += [
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+  ]

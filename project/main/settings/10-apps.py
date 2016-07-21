@@ -1,6 +1,6 @@
 INSTALLED_APPS = (
   'main',
-  'suit',
+  #'suit',
 
   'django.contrib.admin',
   'django.contrib.auth',
@@ -9,16 +9,16 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
 
-  'compressor',
-  'crop_override',
-  'sorl.thumbnail',
+  #'compressor',
+  #'crop_override',
+  #'sorl.thumbnail',
 
 )
 
 # Django Suit configuration example
 SUIT_CONFIG = {
   # header
-  'ADMIN_NAME': 'Modifi3d',
+  'ADMIN_NAME': '{{ project_name }}',
   # 'HEADER_DATE_FORMAT': 'l, j. F Y',
   # 'HEADER_TIME_FORMAT': 'H:i',
 
