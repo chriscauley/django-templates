@@ -1,6 +1,6 @@
 INSTALLED_APPS = (
   'main',
-  #'suit',
+  'suit',
 
   'django.contrib.admin',
   'django.contrib.auth',
@@ -9,9 +9,9 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
 
-  #'compressor',
-  #'crop_override',
-  #'sorl.thumbnail',
+  'compressor',
+  'crop_override',
+  'sorl.thumbnail',
 
 )
 

@@ -16,5 +16,3 @@ for s_file in ['00-base','10-apps','local',machine_name]:
     exec(compile(open(os.path.abspath(f)).read(), f, 'exec'), globals(), locals())
   except IOError:
     print "Setting file missing. We looked here: %s"%f
-
-TEMPLATES[0]['DEBUG'] = DEBUG
