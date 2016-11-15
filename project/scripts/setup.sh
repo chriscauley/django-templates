@@ -1,42 +1,33 @@
 #! /bin/bash
+# note, untested, try on new machine first
+# also this is after github.com/chriscauley/org/start.sh is run successfully
 
-# Make sure only root can run our script
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+SDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PDIR=$SDIR/../
 
-echo "Copying configuration files... "
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SITE=`readlink -f $DIR/../`
-SHARED=`readlink -f $DIR/../../shared`
+cd ~
 
-ln -s $DIR/nginx.conf /etc/nginx/sites-enabled/{{ project_name }}.conf
-/etc/init.d/nginx restart
-ln -s $DIR/gunicorn.sh /etc/init.d/gunicorn-{{ project_name }}.sh
-su deploy -c "ln -s $DIR/post-receive $DIR/../.git/hooks/post-receive"
-chown -R deploy.deploy $DIR/../.git/hooks/post-receive
-chmod +x $DIR/*.sh $DIR/post-receive
+git clone https://github.com/chriscauley/django-drop.git
+git clone https://github.com/chriscauley/lablackey.git
+git clone https://github.com/chriscauley/django-unrest-media.git
 
-echo "Creating shared folders... "
-mkdir $SHARED
-mkdir $SHARED/log $SHARED/pid $SHARED/sockets
-chown -R deploy.deploy $SHARED
+cd $PDIR
+mkdir .dev
+ln -s $HOME/django-drop/drop/ $PDIR/.dev/
+ln -s $HOME/lablackey/lablackey/ $PDIR/.dev/
+ln -s $HOME/django-unrest-media/media/ $PDIR/.dev/
 
-echo "Creating virtual environment... (this may take a minute or two)"
-cd $SITE
-virtualenv env>/dev/null
-source env/bin/activate
-pip install -r $DIR/requirements.txt>/dev/null
-chown -R deploy.deploy $SITE
+ln -s $SDIR/nginx.conf /etc/nginx/sites-enabled/thegamesupply.conf
+sudo service nginx restart
+ln -s $SDIR/post-receive $PDIR/.git/hooks/post-receive
+chmod +x $SDIR/*.sh $SDIR/post-receive
 
 echo -e "Done! \n\n"
 
 echo "FINAL TODO:"
 echo "+ Create the appropriate database, most likely in:"
-echo "   main/settings/20-database.django-settings or"
-echo "   main/settings/`hostname`.py"
+echo "   main/settings/local.py or main/settings/`hostname`.py"
 echo "+ Run ./manage.py syncdb and ./manage.py migrate or load a database file."
-echo "+ On your machine create a git remote:"
+echo "+ If this is not a development project, on your machine create a git remote:"
 echo "   git remote add [staging|live|temp] deploy@[hostname]:${SITE} "
 echo "+ Set bare=true in .git/config when you are ready to start pushing."
