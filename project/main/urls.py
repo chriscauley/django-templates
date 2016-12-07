@@ -15,7 +15,6 @@ urlpatterns = [
   url(r'^$', main_views.home,name='home'),
   url(r'favicon.ico$', main_views.redirect,
       {'url': getattr(settings,'FAVICON','/static/favicon.png')}),
-  url(r'^app.appcache$',main_views.direct_to_template,{'template': 'app.appcache'}),
 ]
 
 if settings.DEBUG:
