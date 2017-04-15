@@ -1,4 +1,4 @@
-django
+django<1.10
 django-suit
 
 django-compressor
@@ -6,7 +6,6 @@ sorl-thumbnail
 -e git+https://github.com/chriscauley/Django-Crop-Override-Field.git#egg=django-crop-override-field
 pillow
 
--e git+https://github.com/chriscauley/django-shop.git#egg=django-shop
-lablackey==0.1.2a
+django-annoying
 
 #python-social-auth

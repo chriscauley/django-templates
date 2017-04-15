@@ -11,7 +11,7 @@ admin.autodiscover()
 urlpatterns = [
   url(r'^admin/', include(admin.site.urls)),
   url(r'^auth/',include(auth_urls)),
-  url(r'',include(lablackey.urls);
+  url(r'',include(lablackey.urls)),
 ]
 
 if settings.DEBUG:
