@@ -9,3 +9,6 @@ pillow
 django-annoying
 
 #python-social-auth
+
+markdown
+html2text
