@@ -2,6 +2,7 @@ if [ -n "$1" ]; then
     T="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/project"
     django-admin.py startproject $1 --template=$T --extension=sh --extension=conf $2
     ln -s /home/chriscauley/.dev/ $1
+    ln -s /home/chriscauley/node_modules/ $1
     cd $1
     virtualenv .e
     source .e/bin/activate
