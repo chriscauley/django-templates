@@ -63,6 +63,14 @@ DATABASES = {
   }
 }
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME': '{{ project_name }}',
+#     'USER': 'postgres',
+#     'PASSWORD': 'postgres',
+#   },
+# }
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

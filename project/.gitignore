@@ -11,3 +11,4 @@ env/*
 .e/*
 .dev
 node_modules
+main/settings/local.py
