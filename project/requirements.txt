@@ -6,9 +6,7 @@ sorl-thumbnail
 -e git+https://github.com/chriscauley/Django-Crop-Override-Field.git#egg=django-crop-override-field
 pillow
 
-django-annoying
-
-#python-social-auth
-
 markdown
 html2text
+
+django-jsonfield

@@ -9,8 +9,3 @@ urlpatterns = [
   url(r'^auth/',include(auth_urls)),
   url(r'',include(lablackey.urls)),
 ]
-
-if settings.DEBUG:
-  urlpatterns += [
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-  ]
